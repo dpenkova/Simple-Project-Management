@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SPM.Models
 {
-    public class Class1
+    public class TaskStatus
     {
+        public int Id { get; set; }
+
+        public string Text { get; set; }
     }
 }
