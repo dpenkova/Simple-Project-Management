@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SPM.Web.Models;
+using SPM.Models;
 
 namespace SPM.Web.Controllers
 {

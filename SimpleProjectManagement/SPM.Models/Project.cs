@@ -8,11 +8,11 @@ namespace SPM.Models
 {
     public class Project
     {
-        private ICollection<Task> tasks { get; set; }
+        private ICollection<ProjectTask> tasks { get; set; }
 
         public Project()
         {
-            this.tasks = new HashSet<Task>();
+            this.tasks = new HashSet<ProjectTask>();
         }
 
         public int Id { get; set; }
@@ -37,7 +37,12 @@ namespace SPM.Models
 
         public DateTime CreatedOn { get; set; }
 
-        public virtual ICollection<Task> Tasks
+        [Required]
+        public string CreatedById { get; set; }
+
+        public virtual ApplicationUser CreatedBy { get; set; }
+
+        public virtual ICollection<ProjectTask> Tasks
         {
             get { return this.tasks; }
             set { this.tasks = value; }
