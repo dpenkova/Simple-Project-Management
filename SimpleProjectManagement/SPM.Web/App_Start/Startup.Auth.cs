@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using SPM.Web.Models;
 using SPM.Models;
+using SPM.Data;
 
 namespace SPM.Web
 {

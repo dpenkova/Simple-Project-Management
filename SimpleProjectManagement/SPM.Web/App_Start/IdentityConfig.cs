@@ -12,6 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using SPM.Models;
 using SPM.Web.Models;
+using SPM.Data;
 
 namespace SPM.Web
 {
