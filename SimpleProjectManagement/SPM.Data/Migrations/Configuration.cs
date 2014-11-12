@@ -4,17 +4,21 @@ namespace SPM.Data.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using SPM.Data;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SPM.Data.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
+
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
+
             // TODO: Remove in production
             this.AutomaticMigrationDataLossAllowed = true;
+            
         }
 
-        protected override void Seed(SPM.Data.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

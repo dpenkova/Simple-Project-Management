@@ -27,15 +27,15 @@
         [Required]
         public DateTime EndDate { get; set; }
 
-        public DateTime EndedOn { get; set; }
+        public DateTime? EndedOn { get; set; }
 
         [Required]
         public DateTime CreatedOn { get; set; }
 
-        [Required]
-        public string CreatedById { get; set; }
+        //[Required]
+        //public string CreatedById { get; set; }
 
-        public virtual ApplicationUser CreatedBy { get; set; }
+        //public virtual ApplicationUser CreatedBy { get; set; }
 
         [Required]
         public int TaskStatusId { get; set; }
