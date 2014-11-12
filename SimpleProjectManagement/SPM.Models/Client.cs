@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SPM.Models
+﻿namespace SPM.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class Client
     {
         private ICollection<Project> projects;
@@ -16,6 +13,7 @@ namespace SPM.Models
             this.projects = new HashSet<Project>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         [Required]

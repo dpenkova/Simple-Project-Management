@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-
-namespace SPM.Models
+﻿namespace SPM.Models
 {
-    public class Project
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using SPM.Data.Contracts.Models;
+
+    public class Project: AuditInfo, IDeletableEntity
     {
         private ICollection<ProjectTask> tasks { get; set; }
 
@@ -15,6 +16,7 @@ namespace SPM.Models
             this.tasks = new HashSet<ProjectTask>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -35,8 +37,6 @@ namespace SPM.Models
 
         public virtual ProjectStatus Status { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-
         [Required]
         public string CreatedById { get; set; }
 
@@ -48,5 +48,10 @@ namespace SPM.Models
             set { this.tasks = value; }
         }
 
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+        
     }
 }

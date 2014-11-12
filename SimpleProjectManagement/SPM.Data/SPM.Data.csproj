@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPM.Data.Contracts\SPM.Data.Contracts.csproj">
+      <Project>{ef089f77-ac4d-4008-8fdc-69125cec81c6}</Project>
+      <Name>SPM.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPM.Models\SPM.Models.csproj">
       <Project>{5e9cadca-3b47-4a5c-98c0-c25d780032e5}</Project>
       <Name>SPM.Models</Name>

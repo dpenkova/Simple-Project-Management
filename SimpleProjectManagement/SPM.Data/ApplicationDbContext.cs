@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNet.Identity.EntityFramework;
     using SPM.Models;
+    using System.Data.Entity;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -14,5 +15,8 @@
         {
             return new ApplicationDbContext();
         }
+
+        public IDbSet<Project> Projects { get; set; }
+
     }
 }

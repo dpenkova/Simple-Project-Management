@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SPM.Models
+﻿namespace SPM.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class ProjectTask
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -29,7 +26,6 @@ namespace SPM.Models
 
         [Required]
         public DateTime EndDate { get; set; }
-
 
         public DateTime EndedOn { get; set; }
 

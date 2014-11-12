@@ -257,6 +257,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPM.Data.Contracts\SPM.Data.Contracts.csproj">
+      <Project>{ef089f77-ac4d-4008-8fdc-69125cec81c6}</Project>
+      <Name>SPM.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPM.Data\SPM.Data.csproj">
       <Project>{ab74077f-0db7-4bf3-ae7c-79be23a407ee}</Project>
       <Name>SPM.Data</Name>
