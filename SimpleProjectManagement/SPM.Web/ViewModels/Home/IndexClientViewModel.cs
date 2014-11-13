@@ -10,5 +10,7 @@ namespace SPM.Web.ViewModels.Home
     public class IndexClientViewModel: IMapFrom<Client>
     {
         public string Name { get; set; }
+
+        public ICollection<Project> Projects { get; set; }
     }
 }

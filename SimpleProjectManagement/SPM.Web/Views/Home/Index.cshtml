@@ -3,10 +3,21 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="">
     @foreach (var client in Model)
     {
-        <p> @client.Name </p>
+        <h3> @client.Name </h3>
+        
+        foreach (var project in client.Projects)
+        {
+            <div class="row">
+                <div class="col-md-5"> @project.Title </div>
+                <div class="col-md-2"> @project.Status.Text </div>
+                <div class="col-md-1"> @project.Status.Text </div>
+                <div class="col-md-1"> @project.Status.Text </div>
+            </div>
+            <hr />
+        }
     }
 </div>
 
