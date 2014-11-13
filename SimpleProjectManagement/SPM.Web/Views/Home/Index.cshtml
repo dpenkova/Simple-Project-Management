@@ -1,6 +1,14 @@
-﻿@{
+﻿@model IEnumerable<SPM.Models.Client>
+@{
     ViewBag.Title = "Home Page";
 }
+
+<div class="jumbotron">
+    @foreach (var client in Model)
+    {
+        <p> @client.Name </p>
+    }
+</div>
 
 <div class="jumbotron">
     <h1>ASP.NET</h1>

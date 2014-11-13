@@ -1,4 +1,8 @@
-﻿using System;
+﻿using SPM.Data;
+using SPM.Data.Contracts.Repository;
+using SPM.Data.Repositories;
+using SPM.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +12,17 @@ namespace SPM.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IRepository<Client> clients;
+
+        public HomeController(IRepository<Client> clients)
+        {
+            this.clients = clients;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var clients = this.clients.All();
+            return View(clients);
         }
 
         public ActionResult About()
