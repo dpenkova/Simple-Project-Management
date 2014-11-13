@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
+using SPM.Web.ViewModels.Home;
 
 namespace SPM.Web.Controllers
 {
@@ -21,7 +23,7 @@ namespace SPM.Web.Controllers
 
         public ActionResult Index()
         {
-            var clients = this.clients.All();
+            var clients = this.clients.All().Project().To<IndexClientViewModel>();
             return View(clients);
         }
 
