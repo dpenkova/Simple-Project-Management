@@ -6,8 +6,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using SPM.Web.Models;
+
 using SPM.Models;
+using SPM.Web.ViewModels.Account;
+using SPM.Web.ViewModels.Manage;
 
 namespace SPM.Web.Controllers
 {
