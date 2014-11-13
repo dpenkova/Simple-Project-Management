@@ -1,17 +1,14 @@
-﻿using SPM.Data;
-using SPM.Data.Contracts.Repository;
-using SPM.Data.Repositories;
-using SPM.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using SPM.Web.ViewModels.Home;
-
-namespace SPM.Web.Controllers
+﻿namespace SPM.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using SPM.Data.Contracts.Repository;
+    using SPM.Models;
+    using SPM.Web.ViewModels.Home;
+
     public class HomeController : Controller
     {
         private IRepository<Client> clients;
@@ -24,21 +21,21 @@ namespace SPM.Web.Controllers
         public ActionResult Index()
         {
             var clients = this.clients.All().OrderBy(c => c.Id).Project().To<IndexClientViewModel>();
-            return View(clients);
+            return this.View(clients);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return this.View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return this.View();
         }
     }
 }

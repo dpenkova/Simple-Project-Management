@@ -1,16 +1,14 @@
 ﻿namespace SPM.Data
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
-    
     using System;
     using System.Linq;
-    using SPM.Models;
     using System.Data.Entity;
 
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using SPM.Models;
     using SPM.Data.Migrations;
-    using SPM.Data.Contracts;
     using SPM.Data.Contracts.Models;
-    
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -18,11 +16,6 @@
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
         }
 
         public IDbSet<Project> Projects { get; set; }
@@ -35,6 +28,10 @@
 
         public IDbSet<TaskStatus> TaskStatuses { get; set; }
 
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
 
         public override int SaveChanges()
         {
@@ -83,6 +80,5 @@
                 entry.State = EntityState.Modified;
             }
         }
-
     }
 }

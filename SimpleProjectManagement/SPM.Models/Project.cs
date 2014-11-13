@@ -7,14 +7,14 @@
 
     using SPM.Data.Contracts.Models;
 
-    public class Project: AuditInfo, IDeletableEntity
+    public class Project : AuditInfo, IDeletableEntity
     {
-        private ICollection<ProjectTask> tasks { get; set; }
-
         public Project()
         {
             this.tasks = new HashSet<ProjectTask>();
         }
+
+        private ICollection<ProjectTask> tasks;
 
         [Key]
         public int Id { get; set; }
@@ -52,6 +52,5 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
-        
     }
 }

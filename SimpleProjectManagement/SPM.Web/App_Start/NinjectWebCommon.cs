@@ -4,16 +4,17 @@
 namespace SPM.Web.App_Start
 {
     using System;
+    using System.Data.Entity;
     using System.Web;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
+
     using SPM.Data;
-    using System.Data.Entity;
-    using SPM.Data.Repositories;
     using SPM.Data.Contracts.Repository;
+    using SPM.Data.Repositories;
 
     public static class NinjectWebCommon 
     {
