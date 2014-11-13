@@ -15,6 +15,7 @@ namespace SPM.Web.App_Start
     using SPM.Data;
     using SPM.Data.Contracts.Repository;
     using SPM.Data.Repositories;
+    using SPM.Models;
 
     public static class NinjectWebCommon 
     {
@@ -67,7 +68,11 @@ namespace SPM.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
+
+            kernel.Bind(typeof(IRepository<Project>)).To(typeof(DeletableEntityRepository<Project>));
+
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
+
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
         }        
     }

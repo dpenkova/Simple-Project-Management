@@ -7,17 +7,18 @@
     @foreach (var client in Model)
     {
         <h3> @client.Name </h3>
-        
-        foreach (var project in client.Projects)
-        {
+        <div>
+            @foreach (var project in client.Projects)
+            {
             <div class="row">
                 <div class="col-md-5"> @project.Title </div>
                 <div class="col-md-2"> @project.Status.Text </div>
-                <div class="col-md-1"> @project.Status.Text </div>
-                <div class="col-md-1"> @project.Status.Text </div>
+                <div class="col-md-1"> @project.IsDeleted </div>
+                <div class="col-md-1"> @project.DeletedOn </div>
             </div>
             <hr />
-        }
+            }
+        </div>
     }
 </div>
 
