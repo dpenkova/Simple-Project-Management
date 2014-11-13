@@ -1,10 +1,12 @@
 ﻿namespace SPM.Models
 {
+    using SPM.Data.Contracts.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Client
+    public class Client: AuditInfo
     {
         private ICollection<Project> projects;
 
@@ -19,9 +21,8 @@
         [Required]
         [MinLength(3)]
         [MaxLength(100)]
+        [Index(IsUnique=true)]
         public string Name { get; set; }
-
-        public DateTime CreatedOn { get; set; }
 
         //[Required]
         //public string CreatedById { get; set; }

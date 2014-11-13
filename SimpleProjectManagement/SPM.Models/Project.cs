@@ -40,7 +40,7 @@
         //[Required]
         //public string CreatedById { get; set; }
 
-        //public virtual ApplicationUser CreatedBy { get; set; }
+        //public virtual ApplicationUser CreatedBy { get; set; } 
 
         public virtual ICollection<ProjectTask> Tasks
         {

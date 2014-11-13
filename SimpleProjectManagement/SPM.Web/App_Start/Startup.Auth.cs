@@ -6,8 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using SPM.Web.Models;
-using SPM.Models;
 using SPM.Data;
+using SPM.Models;
 
 namespace SPM.Web
 {
