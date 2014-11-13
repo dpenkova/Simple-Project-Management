@@ -23,7 +23,7 @@ namespace SPM.Web.Controllers
 
         public ActionResult Index()
         {
-            var clients = this.clients.All().Project().To<IndexClientViewModel>();
+            var clients = this.clients.All().OrderBy(c => c.Id).Project().To<IndexClientViewModel>();
             return View(clients);
         }
 
