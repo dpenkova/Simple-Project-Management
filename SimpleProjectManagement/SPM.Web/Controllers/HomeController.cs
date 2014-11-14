@@ -74,8 +74,16 @@
             //this.tasks.Add(task);
             //this.tasks.SaveChanges();
 
-            var clients = this.clients.All().OrderBy(c => c.Id).Project().To<IndexClientViewModel>();
-            return this.View(clients);
+            //var clients = this.clients.All().OrderBy(c => c.Id).Project().To<IndexClientViewModel>();
+
+            var topCurrentProjects = this.projects.All()
+                .Where(p => p.Status.Text != "Completed" && p.Status.Text != "Cancelled")
+                .Project().To<IndexProjectViewModel>()
+                .ToList()
+                .OrderByDescending(p => p.ProgressPercentage)
+                .Take(10);
+
+            return this.View(topCurrentProjects);
         }
 
         public ActionResult About()

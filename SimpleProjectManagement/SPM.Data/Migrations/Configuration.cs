@@ -47,115 +47,118 @@ namespace SPM.Data.Migrations
 
             var clientsCount = context.Clients.Count();
             var projectStatusCount = context.ProjectStatuses.Count();
-            
-            var projects = new List<Project>();
-            projects.Add(new Project 
-            { 
-                ClientId = Rand.Next(1, clientsCount + 1), 
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
-                StatusId = Rand.Next(1, projectStatusCount + 1), 
-                Title = "Halloween event" 
-            });
-            projects.Add(new Project
+
+            if (!context.Projects.Any())
             {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Първа помощ БТЛ"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "BTL конкурс"
-            }); 
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Branding magazine"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Prizes logistics"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Пловдивски панаир"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Back to school additional activities"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Malls contracts"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Caravanas roadshow - конкурс"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Семплинг на нов продукт на два фестивала"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "QSA Monthly Report"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Веселите зъбки"
-            });
-            projects.Add(new Project
-            {
-                ClientId = Rand.Next(1, clientsCount + 1),
-                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                StatusId = Rand.Next(1, projectStatusCount + 1),
-                Title = "Blue Event"
-            });
-            
-            context.Projects.AddOrUpdate(projects.ToArray());
-            context.SaveChanges();
+                var projects = new List<Project>();
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Halloween event"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Първа помощ БТЛ"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "BTL конкурс"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Branding magazine"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Prizes logistics"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Пловдивски панаир"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Back to school additional activities"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Malls contracts"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Caravanas roadshow - конкурс"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Семплинг на нов продукт на два фестивала"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "QSA Monthly Report"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Веселите зъбки"
+                });
+                projects.Add(new Project
+                {
+                    ClientId = Rand.Next(1, clientsCount + 1),
+                    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    StatusId = Rand.Next(1, projectStatusCount + 1),
+                    Title = "Blue Event"
+                });
+
+                context.Projects.AddOrUpdate(projects.ToArray());
+                context.SaveChanges();
+            }
 
             var taskStatusCount = context.TaskStatuses.Count();
             var projectsCount = context.Projects.Count();

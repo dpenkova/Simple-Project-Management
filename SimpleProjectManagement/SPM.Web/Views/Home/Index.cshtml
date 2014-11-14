@@ -1,9 +1,39 @@
-﻿@model IEnumerable<SPM.Web.ViewModels.Home.IndexClientViewModel>
+﻿@model IEnumerable<SPM.Web.ViewModels.Home.IndexProjectViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
 
-<div class="">
+<div>
+    @if (Model == null)
+    {
+        <div class="row"> No projects yet! </div>
+    }
+    else
+    {
+        <div class="row form-control">
+            <div class="col-md-5"> @Html.Label("Project") </div>
+            <div class="col-md-2"> @Html.Label("Client") </div>
+            <div class="col-md-2"> @Html.Label("Status") </div>
+            <div class="col-md-1"> @Html.Label("Progress") </div>
+            <div class="col-md-2"> @Html.Label("Manager") </div>
+        </div>
+            foreach (var project in Model)
+            {
+            <div class="row form-control">
+                <div class="col-md-5"> @project.Title </div>
+                <div class="col-md-2"> @project.Client.Name </div>
+                <div class="col-md-2"> @project.Status.Text </div>
+                <div class="col-md-1"> @project.ProgressPercentage% </div>
+                <div class="col-md-2"> @project.CreatedBy.UserName </div>
+            </div>
+            }
+    }
+
+
+        </div>
+
+
+@*<div class="">
     @foreach (var client in Model)
     {
         <h3> @client.Name </h3>
@@ -22,7 +52,7 @@
             }
         </div>
     }
-</div>
+</div>*@
 
 <div class="jumbotron">
     <h1>ASP.NET</h1>

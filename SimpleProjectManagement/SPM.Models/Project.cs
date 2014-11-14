@@ -1,6 +1,7 @@
 ﻿namespace SPM.Models
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -52,5 +53,7 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        
     }
 }
