@@ -1,6 +1,7 @@
 namespace SPM.Data.Migrations
 {
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
     using SPM.Data;
 
@@ -16,17 +17,43 @@ namespace SPM.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var seed = new SeedData();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
+            if (!context.ProjectStatuses.Any())
+            {
+                var projectStatuses = seed.ProjectStatuses;
+                context.ProjectStatuses.AddOrUpdate(projectStatuses.ToArray());
+                context.SaveChanges();
+            }
+
+            if (!context.TaskStatuses.Any())
+            {
+                var taskStatuses = seed.TaskStatuses;
+                context.TaskStatuses.AddOrUpdate(taskStatuses.ToArray());
+                context.SaveChanges();
+            }
+
+            if (!context.Clients.Any())
+            {
+                var clients = seed.Clients;
+                context.Clients.AddOrUpdate(clients.ToArray());
+                context.SaveChanges();
+            }
+
+            //if (!context.Projects.Any())
+            //{
+            //    var projects = seed.Projects;
+            //    context.Projects.AddOrUpdate(projects.ToArray());
+            //    context.SaveChanges();
+            //}
+
+            //if (!context.ProjectTasks.Any())
+            //{
+            //    var projectTasks = seed.ProjectTasks;
+            //    context.ProjectTasks.AddOrUpdate(projectTasks.ToArray());
+            //    context.SaveChanges();
+            //}
+
         }
     }
 }

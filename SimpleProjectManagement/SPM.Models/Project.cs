@@ -38,9 +38,9 @@
         public virtual ProjectStatus Status { get; set; }
 
         //[Required]
-        //public string CreatedById { get; set; }
+        public string CreatedById { get; set; }
 
-        //public virtual ApplicationUser CreatedBy { get; set; } 
+        public virtual ApplicationUser CreatedBy { get; set; }
 
         public virtual ICollection<ProjectTask> Tasks
         {

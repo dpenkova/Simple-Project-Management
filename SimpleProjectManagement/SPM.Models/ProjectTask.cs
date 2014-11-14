@@ -33,9 +33,9 @@
         public DateTime CreatedOn { get; set; }
 
         //[Required]
-        //public string CreatedById { get; set; }
+        public string CreatedById { get; set; }
 
-        //public virtual ApplicationUser CreatedBy { get; set; }
+        public virtual ApplicationUser CreatedBy { get; set; }
 
         [Required]
         public int TaskStatusId { get; set; }
