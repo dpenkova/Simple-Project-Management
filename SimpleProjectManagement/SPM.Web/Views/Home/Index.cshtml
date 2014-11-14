@@ -10,23 +10,37 @@
     }
     else
     {
-        <div class="row form-control">
-            <div class="col-md-5"> @Html.Label("Project") </div>
-            <div class="col-md-2"> @Html.Label("Client") </div>
-            <div class="col-md-2"> @Html.Label("Status") </div>
-            <div class="col-md-1"> @Html.Label("Progress") </div>
-            <div class="col-md-2"> @Html.Label("Manager") </div>
-        </div>
-            foreach (var project in Model)
-            {
-            <div class="row form-control">
-                <div class="col-md-5"> @project.Title </div>
-                <div class="col-md-2"> @project.Client.Name </div>
-                <div class="col-md-2"> @project.Status.Text </div>
-                <div class="col-md-1"> @project.ProgressPercentage% </div>
-                <div class="col-md-2"> @project.CreatedBy.UserName </div>
+        <div class="container-fluid alert">
+            <div class="alert">
+                <div class="col-md-4"> @Html.Label("Project") </div>
+                <div class="col-md-2"> @Html.Label("Client") </div>
+                <div class="col-md-2"> @Html.Label("Status") </div>
+                <div class="col-md-2"> @Html.Label("Progress") </div>
+                <div class="col-md-2"> @Html.Label("Manager") </div>
             </div>
+            <hr />
+        
+            @foreach (var project in Model)
+            {
+                <div class="">
+                    <div class="col-md-4"> @project.Title </div>
+                    <div class="col-md-2"> @project.Client.Name </div>
+                    <div class="col-md-2"> @project.Status.Text </div>
+                    <div class="col-md-2"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@project.ProgressPercentage.ToString()" aria-valuemin="0" aria-valuemax="100" style="width: @project.ProgressPercentage%;">
+                                @project.ProgressPercentage%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"> @project.CreatedBy.UserName </div>
+                </div>
+                <br /><hr />  
             }
+          
+            
+
+        </div>
     }
 
 

@@ -48,8 +48,8 @@ namespace SPM.Data.Migrations
             var clientsCount = context.Clients.Count();
             var projectStatusCount = context.ProjectStatuses.Count();
 
-            if (!context.Projects.Any())
-            {
+            //if (!context.Projects.Any())
+            //{
                 var projects = new List<Project>();
                 projects.Add(new Project
                 {
@@ -158,7 +158,7 @@ namespace SPM.Data.Migrations
 
                 context.Projects.AddOrUpdate(projects.ToArray());
                 context.SaveChanges();
-            }
+            //}
 
             var taskStatusCount = context.TaskStatuses.Count();
             var projectsCount = context.Projects.Count();

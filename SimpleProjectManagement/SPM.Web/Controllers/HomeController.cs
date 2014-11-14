@@ -77,7 +77,7 @@
             //var clients = this.clients.All().OrderBy(c => c.Id).Project().To<IndexClientViewModel>();
 
             var topCurrentProjects = this.projects.All()
-                .Where(p => p.Status.Text != "Completed" && p.Status.Text != "Cancelled")
+                .Where(p => p.Status.Text == "In Progress" )
                 .Project().To<IndexProjectViewModel>()
                 .ToList()
                 .OrderByDescending(p => p.ProgressPercentage)
