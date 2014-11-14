@@ -3,7 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class ProjectTask
+    using SPM.Data.Contracts.Models;
+
+    public class ProjectTask : AuditInfo
     {
         [Key]
         public int Id { get; set; }
@@ -28,9 +30,6 @@
         public DateTime EndDate { get; set; }
 
         public DateTime? EndedOn { get; set; }
-
-        [Required]
-        public DateTime CreatedOn { get; set; }
 
         //[Required]
         public string CreatedById { get; set; }
