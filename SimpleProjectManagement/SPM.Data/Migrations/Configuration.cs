@@ -159,22 +159,242 @@ namespace SPM.Data.Migrations
 
             var taskStatusCount = context.TaskStatuses.Count();
             var projectsCount = context.Projects.Count();
+            
+            var tasks = new List<ProjectTask>();
+            tasks.Add(new ProjectTask
+            {
+                Name = "Дизайн на флаер стикер и брандинг на корнера.",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Производство на стикери",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Каталози - корекции и файлове за печат",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Финализиране на дизайни",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Медия план",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Генериране на идеи",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Уточняване на детайли с локацията",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Фактуриране на проекта",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Ревизия на бюджета",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Изготвяне на тайминг за основните елементи и производства",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Предложения за подаръци",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Запитвания за логистика",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Дизайн на банери",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Материали за събитието",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Коригиране на текстове и съгласуване с адвокати",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Транспорт до Велинград",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Производство на дипляни и листовки",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Среща с архитект по проекта",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Изчистване на механиката и среща с клиента",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Бюджети, попълване на конкурсна документация и таблици",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
+            tasks.Add(new ProjectTask
+            {
+                Name = "Фактуриране на приключили дейности по проекта",
+                ProjectId = Rand.Next(1, projectsCount + 1),
+                Priority = Priority.Medium,
+                StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
+                EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
+                CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+                TaskStatusId = Rand.Next(1, taskStatusCount + 1),
+                Responsible = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
+            });
 
-            //var tasks = new List<ProjectTask>();
-            //tasks.Add(new ProjectTask
-            //{
-            //    Name = "Task1",
-            //    ProjectId = Rand.Next(1, projectsCount + 1),
-            //    Priority = Priority.Medium,
-            //    StartDate = DateTime.Now.AddDays(Rand.Next(-365, -135)),
-            //    EndDate = DateTime.Now.AddDays(Rand.Next(-130, -5)),
-            //    CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "SomeUser"),
-            //    TaskStatusId = Rand.Next(1, taskStatusCount + 1),
-            //    Responsible = new ApplicationUser() { UserName = "AnotherUser" },
-            //});
-
-            //context.ProjectTasks.AddOrUpdate(tasks.ToArray());
-            //context.SaveChanges();
+            context.ProjectTasks.AddOrUpdate(tasks.ToArray());
+            context.SaveChanges();
 
             //if (!context.Projects.Any())
             //{

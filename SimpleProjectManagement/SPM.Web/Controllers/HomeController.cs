@@ -54,18 +54,25 @@
             //this.dbContext.Projects.AddOrUpdate(projects.ToArray());
             //this.dbContext.SaveChanges();
 
-            var task = new ProjectTask();
-            task.CreatedById = this.User.Identity.GetUserId();
-            task.EndDate = DateTime.Now;
-            task.Name = "Task 1";
-            task.Priority = Priority.Medium;
-            task.ProjectId = 12;
-            task.ResponsibleId = this.User.Identity.GetUserId();
-            task.StartDate = DateTime.Now;
-            task.TaskStatusId = 1;
+            //var tasksList = new List<ProjectTask>();
+            //tasksList.Add(new ProjectTask { Name = "Task1", ProjectId = 10, Priority = Priority.Medium, TaskStatusId = 2, StartDate = DateTime.Now, EndDate = DateTime.Now, ResponsibleId = this.User.Identity.GetUserId(), CreatedById = this.User.Identity.GetUserId() });
+            //tasksList.Add(new ProjectTask { Name = "Task2", ProjectId = 11, Priority = Priority.Low, TaskStatusId = 1, StartDate = DateTime.Now, EndDate = DateTime.Now, ResponsibleId = this.User.Identity.GetUserId(), CreatedById = this.User.Identity.GetUserId() });
 
-            this.tasks.Add(task);
-            this.tasks.SaveChanges();
+            //this.dbContext.ProjectTasks.AddOrUpdate(tasksList.ToArray());
+            //this.dbContext.SaveChanges();
+
+            //var task = new ProjectTask();
+            //task.Name = "Task 1";
+            //task.ProjectId = 12;
+            //task.Priority = Priority.Medium;
+            //task.TaskStatusId = 1;
+            //task.StartDate = DateTime.Now;
+            //task.EndDate = DateTime.Now;
+            //task.ResponsibleId = this.User.Identity.GetUserId();
+            //task.CreatedById = this.User.Identity.GetUserId();
+
+            //this.tasks.Add(task);
+            //this.tasks.SaveChanges();
 
             var clients = this.clients.All().OrderBy(c => c.Id).Project().To<IndexClientViewModel>();
             return this.View(clients);
