@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using SPM.Web.Areas.Administration.ViewModels.Projects;
 
