@@ -22,6 +22,7 @@ namespace SPM.Web.ViewModels.Home
         public string Description { get; set; }
 
         public int ClientId { get; set; }
+
         public virtual Client Client { get; set; }
    
         public virtual ProjectStatus Status { get; set; }
