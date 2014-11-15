@@ -1,0 +1,20 @@
+﻿@using SPM.Web.Areas.Administration.ViewModels.Projects
+@{
+    ViewBag.Title = "Projects";
+    const string ControllerName = "Project";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.Kendo()
+    .Grid<ProjectViewModel>()
+    .Name("grid")
+    .Columns(cols =>
+        {
+            cols.Bound(pr => pr.Title);
+        })
+    .DataSource(data =>
+        data
+            .Ajax()
+            .Read(read => read.Action("Read", ControllerName)))
+)
