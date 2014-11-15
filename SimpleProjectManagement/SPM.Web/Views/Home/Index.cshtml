@@ -10,7 +10,7 @@
     }
     else
     {
-        <div class="container-fluid alert">
+        <div class="container alert">
             <div class="alert">
                 <div class="col-md-4"> @Html.Label("Project") </div>
                 <div class="col-md-2"> @Html.Label("Client") </div>
@@ -33,8 +33,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2"> @project.CreatedBy.UserName </div>
-                    @*<div class="col-md-2"> @project.CreatedBy.FirstName @project.CreatedBy.LastName </div>*@
+                    @*<div class="col-md-2"> @project.CreatedBy.UserName </div>*@
+                    <div class="col-md-2"> @project.CreatedBy.FirstName @project.CreatedBy.LastName </div>
                 </div>
                 <br /><hr />  
             }

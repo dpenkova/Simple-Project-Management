@@ -37,7 +37,7 @@ namespace SPM.Data.Migrations
             TaskStatuses.Add(new SPM.Models.TaskStatus() { Text = "In Progress" });
             TaskStatuses.Add(new SPM.Models.TaskStatus() { Text = "Completed" });
 
-            ApplicationUser user = new ApplicationUser() { UserName = "SomeUser" };
+            ApplicationUser user = new ApplicationUser() { UserName = "SomeUser", FirstName = "Pesho", LastName = "Peshov", Email = "pesho@abv.bg" };
             ApplicationUser anotherUser = new ApplicationUser() { UserName = "AnotherUser" };
 
 
