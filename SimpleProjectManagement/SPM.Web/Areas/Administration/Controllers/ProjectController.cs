@@ -38,8 +38,12 @@ namespace SPM.Web.Areas.Administration.Controllers
         public JsonResult Read([DataSourceRequest]DataSourceRequest request)
         {
             var projects = this.projects.All()
-                .Project().To<ProjectViewModel>()
-                .ToDataSourceResult(request);
+                .ToDataSourceResult(request, p => new { 
+                    Title = p.Title,
+                    ClientName = p.Client.Name,
+                    Status = p.Status.Text,
+                    CreatedBy = string.Format("{0} {1}", p.CreatedBy.FirstName, p.CreatedBy.LastName ),
+                });
              
             return this.Json(projects);
 

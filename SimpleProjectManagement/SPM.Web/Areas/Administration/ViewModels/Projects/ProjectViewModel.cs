@@ -22,14 +22,14 @@
         [StringLength(255, ErrorMessage = "The {0} must be at least {2} characters long.")]
         public string Description { get; set; }
 
-        //[Display(Name = "Client")]
-        //public virtual Client Client { get; set; }
+        [Display(Name = "Client")]
+        public string ClientName { get; set; }
 
         [Display(Name = "Status")]
         public virtual ProjectStatus Status { get; set; }
 
-        //[Display(Name = "Manager")]
-        //public virtual ApplicationUser CreatedBy { get; set; }
+        [Display(Name = "Manager")]
+        public string CreatedBy { get; set; }
 
         public virtual ICollection<ProjectTask> Tasks { get; set; }
 

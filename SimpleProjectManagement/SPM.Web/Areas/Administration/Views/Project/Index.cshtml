@@ -12,7 +12,14 @@
     .Columns(cols =>
         {
             cols.Bound(pr => pr.Title);
+            cols.Bound(pr => pr.ClientName);
+            cols.Bound(pr => pr.Status);
+            cols.Bound(pr => pr.CreatedBy);
+            
+            
         })
+    .Sortable()
+    .Pageable()
     .DataSource(data =>
         data
             .Ajax()
