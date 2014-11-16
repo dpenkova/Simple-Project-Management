@@ -12,16 +12,36 @@
     .Columns(cols =>
         {
             cols.Bound(pr => pr.Title);
-            cols.Bound(pr => pr.ClientName);
+            cols.Bound(pr => pr.Client);
             cols.Bound(pr => pr.Status);
             cols.Bound(pr => pr.CreatedBy);
-            
-            
+            cols.Command(command =>
+            {
+                command.Edit();
+                command.Destroy();
+            });
         })
+    .ToolBar(tool =>
+    {
+        tool.Create();
+    })
     .Sortable()
     .Pageable()
+    .Groupable()
+    .Filterable()
+    .Editable(edit =>
+            {
+                edit.Mode(GridEditMode.PopUp);
+            })
+    .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
     .DataSource(data =>
-        data
-            .Ajax()
-            .Read(read => read.Action("Read", ControllerName)))
+        data.Ajax()
+        .Model(m => m.Id(pr => pr.Id))
+        .PageSize(10)
+        .ServerOperation(true)
+        .Create("Create", ControllerName)
+        .Read(read => read.Action("Read", ControllerName))
+        .Update("Update", ControllerName)
+        .Destroy("Destroy", ControllerName)
+        )
 )

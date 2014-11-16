@@ -7,43 +7,45 @@
     using SPM.Models;
     using SPM.Web.Areas.Administration.ViewModels.Base;
     using SPM.Web.Infrastructure.Mapping;
+    using System;
+    using System.Linq.Expressions;
 
     public class ProjectViewModel : AdministrationViewModel, IMapFrom<Project>
     {
+        public static Expression<Func<Project, ProjectViewModel>> FromProject
+        {
+            get
+            {
+                return pr => new ProjectViewModel
+                {
+                    Id = pr.Id,
+                    Title = pr.Title,
+                    CreatedBy = pr.CreatedBy.FirstName + " " + pr.CreatedBy.LastName,
+                    Client = pr.Client.Name,
+                    Status = pr.Status.Text,
+                    Description = pr.Description,
+                    CreatedOn = pr.CreatedOn,
+                    ModifiedOn = pr.ModifiedOn,
+                };
+            }
+        }
+
         [HiddenInput(DisplayValue = false)]
         public int? Id { get; set; }
 
+
         [Required]
-        [Display(Name = "Project")]
-        [StringLength(150, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         public string Title { get; set; }
 
-        [Display(Name = "Description")]
-        [StringLength(255, ErrorMessage = "The {0} must be at least {2} characters long.")]
+        [Required]
+        public string Client { get; set; }
+
+        [Required]
+        public string Status { get; set; }
+
         public string Description { get; set; }
-
-        [Display(Name = "Client")]
-        public string ClientName { get; set; }
-
-        [Display(Name = "Status")]
-        public virtual ProjectStatus Status { get; set; }
-
-        [Display(Name = "Manager")]
+        
+        [HiddenInput(DisplayValue = false)]
         public string CreatedBy { get; set; }
-
-        public virtual ICollection<ProjectTask> Tasks { get; set; }
-
-        //[Required]
-        public int ClientId { get; set; }
-
-        //[Required]
-        //public int StatusId { get; set; }
-
-        //[Required]
-        //public string CreatedById { get; set; }
-
-        //public bool IsDeleted { get; set; }
-
-        //public DateTime? DeletedOn { get; set; }
     }
 }
