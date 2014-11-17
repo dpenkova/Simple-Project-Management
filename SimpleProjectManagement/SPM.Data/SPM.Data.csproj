@@ -68,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPM.Common\SPM.Common.csproj">
+      <Project>{6a23019a-31f7-4326-ac12-f55c324e15b5}</Project>
+      <Name>SPM.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPM.Data.Contracts\SPM.Data.Contracts.csproj">
       <Project>{ef089f77-ac4d-4008-8fdc-69125cec81c6}</Project>
       <Name>SPM.Data.Contracts</Name>

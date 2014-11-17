@@ -17,20 +17,13 @@
     using SPM.Web.ViewModels.Home;
     using System;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly IRepository<Client> clients;
-        private readonly IRepository<ProjectTask> tasks;
-
-        private readonly IDeletableEntityRepository<Project> projects;
-        private ApplicationDbContext dbContext;
-
-        public HomeController(IRepository<ProjectTask> tasks, IRepository<Client> clients, IDeletableEntityRepository<Project> projects, ApplicationDbContext context)
+ 
+        public HomeController(IApplicationData data)
+            : base(data)
         {
-            this.clients = clients;
-            this.tasks = tasks;
-            this.projects = projects;
-            this.dbContext = context;
+            
         }
 
         public ActionResult Index()
@@ -76,7 +69,7 @@
 
             //var clients = this.clients.All().OrderBy(c => c.Id).Project().To<IndexClientViewModel>();
 
-            var topCurrentProjects = this.projects.All()
+            var topCurrentProjects = this.Data.Projects.All()
                 .Where(p => p.Status.Text == "In Progress" )
                 .Project().To<IndexProjectViewModel>()
                 .ToList()

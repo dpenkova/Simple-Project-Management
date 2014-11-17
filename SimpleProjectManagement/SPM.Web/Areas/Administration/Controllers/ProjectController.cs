@@ -18,19 +18,11 @@
 
     public class ProjectController : AdminController
     {
-        private ApplicationDbContext dbContext;
-        private IDeletableEntityRepository<Project> projects;
-        //private IRepository<Client> clients;
-
-
-        public ProjectController(ApplicationDbContext context, IDeletableEntityRepository<Project> projects, 
-            IRepository<Client> clients)
+        
+        public ProjectController(IApplicationData data)
+            : base(data)
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            this.dbContext = context;
-            this.projects = projects;
-            //this.clients = clients;
-
         }
 
         // GET: Administration/Project
@@ -44,7 +36,7 @@
         {
 
            // var projects = this.dbContext.Projects.Select(ProjectViewModel.FromProject);
-            var projects = this.projects.All().Select(ProjectViewModel.FromProject);
+            var projects = this.Data.Projects.All().Select(ProjectViewModel.FromProject);
 
 
             return this.Json(projects.AsQueryable().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
@@ -53,16 +45,16 @@
         [HttpPost]
         public JsonResult Update([DataSourceRequest] DataSourceRequest request, ProjectViewModel projectModel)
         {
-            var existingProject = this.dbContext.Projects.FirstOrDefault(pr => pr.Id == projectModel.Id);
+            var existingProject = this.Data.Projects.All().FirstOrDefault(pr => pr.Id == projectModel.Id);
             
             if (projectModel != null && ModelState.IsValid)
             {
                 existingProject.Title = projectModel.Title;
                 existingProject.Description = projectModel.Description;
-                existingProject.Client = this.dbContext.Clients.FirstOrDefault(client => client.Name == projectModel.Client);
-                existingProject.Status = this.dbContext.ProjectStatuses.FirstOrDefault(status => status.Text == projectModel.Status);
+                existingProject.Client = this.Data.Clients.All().FirstOrDefault(client => client.Name == projectModel.Client);
+                existingProject.Status = this.Data.ProjectStatuses.All().FirstOrDefault(status => status.Text == projectModel.Status);
                        
-                this.dbContext.SaveChanges();
+                this.Data.SaveChanges();
             }
 
             //projectModel.ModifiedOn = existingProject.ModifiedOn;
@@ -74,10 +66,10 @@
         [HttpPost]
         public JsonResult Destroy([DataSourceRequest] DataSourceRequest request, ProjectViewModel projectModel)
         {
-            var existingProject = this.dbContext.Projects.FirstOrDefault(x => x.Id == projectModel.Id);
+            var existingProject = this.Data.Projects.All().FirstOrDefault(x => x.Id == projectModel.Id);
 
-            this.projects.Delete(projectModel.Id.Value);
-            this.projects.SaveChanges();
+            this.Data.Projects.Delete(projectModel.Id.Value);
+            this.Data.SaveChanges();
 
             return Json(new[] { projectModel }, JsonRequestBehavior.AllowGet);
         }
@@ -87,11 +79,11 @@
         {
             if (projectModel != null && ModelState.IsValid)
             {
-                var client = this.dbContext.Clients.FirstOrDefault(x => x.Name == projectModel.Client);
-                var status = this.dbContext.ProjectStatuses.FirstOrDefault(x => x.Text == projectModel.Status);
+                var client = this.Data.Clients.All().FirstOrDefault(x => x.Name == projectModel.Client);
+                var status = this.Data.ProjectStatuses.All().FirstOrDefault(x => x.Text == projectModel.Status);
 
                 var userId = this.User.Identity.GetUserId();
-                var user = this.dbContext.Users.FirstOrDefault(x => x.Id == userId);
+                var user = this.Data.Users.All().FirstOrDefault(x => x.Id == userId);
 
                 var newProject = new Project
                 {
@@ -102,8 +94,8 @@
                     CreatedById = userId,
                 };
 
-                this.dbContext.Projects.Add(newProject);
-                this.dbContext.SaveChanges();
+                this.Data.Projects.Add(newProject);
+                this.Data.SaveChanges();
 
                 string author = user.FirstName + " " + user.LastName;
                 projectModel.Id = newProject.Id;
