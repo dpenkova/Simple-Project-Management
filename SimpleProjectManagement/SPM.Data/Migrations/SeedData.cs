@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SPM.Models;
-
-namespace SPM.Data.Migrations
+﻿namespace SPM.Data.Migrations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using SPM.Models;
+
     public class SeedData
     {
         public static Random Rand = new Random();
