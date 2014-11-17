@@ -26,7 +26,6 @@
 
         private ICollection<Project> projects;
 
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

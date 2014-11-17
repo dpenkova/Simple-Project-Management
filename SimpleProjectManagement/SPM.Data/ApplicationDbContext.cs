@@ -18,15 +18,15 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
-        public IDbSet<Project> Projects { get; set; }
+        public virtual IDbSet<Project> Projects { get; set; }
 
-        public IDbSet<Client> Clients { get; set; }
+        public virtual IDbSet<Client> Clients { get; set; }
 
-        public IDbSet<ProjectStatus> ProjectStatuses { get; set; }
+        public virtual IDbSet<ProjectStatus> ProjectStatuses { get; set; }
 
-        public IDbSet<ProjectTask> ProjectTasks { get; set; }
+        public virtual IDbSet<ProjectTask> ProjectTasks { get; set; }
 
-        public IDbSet<TaskStatus> TaskStatuses { get; set; }
+        public virtual IDbSet<TaskStatus> TaskStatuses { get; set; }
 
         public static ApplicationDbContext Create()
         {

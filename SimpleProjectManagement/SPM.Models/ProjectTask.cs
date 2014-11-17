@@ -4,8 +4,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using SPM.Data.Contracts.Models;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public class ProjectTask : AuditInfo
+    public class ProjectTask : AuditInfo, IDeletableEntity
     {
         [Key]
         public int Id { get; set; }
@@ -45,5 +46,10 @@
         public string ResponsibleId { get; set; }
 
         public virtual ApplicationUser Responsible { get; set; }
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

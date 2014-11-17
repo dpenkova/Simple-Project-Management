@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using SPM.Data.Contracts.Models;
+    using System;
 
-    public class Client : AuditInfo
+    public class Client : AuditInfo, IDeletableEntity
     {
         private ICollection<Project> projects;
 
@@ -34,5 +35,10 @@
             get { return this.projects; }
             set { this.projects = value; }
         }
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }
