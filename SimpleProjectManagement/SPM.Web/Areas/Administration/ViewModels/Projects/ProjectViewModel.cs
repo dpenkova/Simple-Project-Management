@@ -26,6 +26,10 @@
                     Description = pr.Description,
                     CreatedOn = pr.CreatedOn,
                     ModifiedOn = pr.ModifiedOn,
+                    IsDeleted = pr.IsDeleted,
+                    ClientId = pr.ClientId,
+                    UserId = pr.CreatedById,
+                    StatusId = pr.StatusId,
                 };
             }
         }
@@ -33,13 +37,14 @@
         [HiddenInput(DisplayValue = false)]
         public int? Id { get; set; }
 
-
         [Required]
         public string Title { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Required]
         public string Client { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Required]
         public string Status { get; set; }
 
@@ -47,5 +52,17 @@
         
         [HiddenInput(DisplayValue = false)]
         public string CreatedBy { get; set; }
+
+        [Display(Name = "Is Deleted")]
+        public bool IsDeleted { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public int ClientId { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string UserId { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public int StatusId { get; set; }
     }
 }

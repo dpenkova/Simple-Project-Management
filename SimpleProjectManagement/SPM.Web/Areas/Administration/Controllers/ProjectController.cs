@@ -6,6 +6,8 @@
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
+    using AutoMapper.QueryableExtensions;
+
     using Microsoft.AspNet.Identity;
 
     using SPM.Data;
@@ -15,6 +17,9 @@
     using System.Threading;
     using System.Globalization;
     using System;
+    using SPM.Web.Areas.Administration.ViewModels.Clients;
+    using SPM.Web.Areas.Administration.ViewModels.Users;
+    using SPM.Web.Areas.Administration.ViewModels.Statuses;
 
     public class ProjectController : AdminController
     {
@@ -28,6 +33,9 @@
         // GET: Administration/Project
         public ActionResult Index()
         {
+            PopulateClients();
+            PopulateUsers();
+            PopulateStatuses();
             return View();
         }
 
@@ -36,23 +44,24 @@
         {
 
            // var projects = this.dbContext.Projects.Select(ProjectViewModel.FromProject);
-            var projects = this.Data.Projects.All().Select(ProjectViewModel.FromProject);
-
+            var projects = this.Data.Projects.AllWithDeleted().Select(ProjectViewModel.FromProject);
 
             return this.Json(projects.AsQueryable().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
+        // [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Update([DataSourceRequest] DataSourceRequest request, ProjectViewModel projectModel)
         {
-            var existingProject = this.Data.Projects.All().FirstOrDefault(pr => pr.Id == projectModel.Id);
+            var existingProject = this.Data.Projects.AllWithDeleted().FirstOrDefault(pr => pr.Id == projectModel.Id);
             
             if (projectModel != null && ModelState.IsValid)
             {
                 existingProject.Title = projectModel.Title;
                 existingProject.Description = projectModel.Description;
-                existingProject.Client = this.Data.Clients.All().FirstOrDefault(client => client.Name == projectModel.Client);
-                existingProject.Status = this.Data.ProjectStatuses.All().FirstOrDefault(status => status.Text == projectModel.Status);
+                existingProject.IsDeleted = projectModel.IsDeleted;
+                //existingProject.Client = this.Data.Clients.All().FirstOrDefault(client => client.Name == projectModel.Client);
+                //existingProject.Status = this.Data.ProjectStatuses.All().FirstOrDefault(status => status.Text == projectModel.Status);
                        
                 this.Data.SaveChanges();
             }
@@ -103,6 +112,28 @@
             }
 
             return Json(new[] { projectModel }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        private void PopulateClients()
+        {
+            var clients = this.Data.Clients.All().OrderBy(e => e.Name).Project().To<ClientViewModel>();
+
+            ViewData["clients"] = clients;
+            ViewData["defaultClient"] = clients.First();
+        }
+
+        private void PopulateUsers()
+        {
+            var users = this.Data.Users.All().Project().To<UserViewModel>().OrderBy(e => e.UserName);
+
+            ViewData["users"] = users;
+        }
+
+        private void PopulateStatuses()
+        {
+            var statuses = this.Data.ProjectStatuses.All().Project().To<StatusViewModel>().OrderBy(st => st.Text);
+
+            ViewData["statuses"] = statuses;
         }
     }
 }

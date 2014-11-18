@@ -6,10 +6,12 @@
 
     public abstract class AdministrationViewModel
     {
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [HiddenInput(DisplayValue = false)]
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [HiddenInput(DisplayValue = false)]
         [Display(Name = "Modified On")]
         public DateTime? ModifiedOn { get; set; }

@@ -1,4 +1,5 @@
 ﻿@using SPM.Web.Areas.Administration.ViewModels.Projects
+@using System.Collections
 @{
     ViewBag.Title = "Projects";
     const string ControllerName = "Project";
@@ -12,9 +13,16 @@
     .Columns(cols =>
         {
             cols.Bound(pr => pr.Title);
-            cols.Bound(pr => pr.Client);
-            cols.Bound(pr => pr.Status);
-            cols.Bound(pr => pr.CreatedBy);
+            //cols.Bound(pr => pr.Client);
+            cols.ForeignKey(p => p.ClientId, (IEnumerable)ViewData["clients"], "Id", "Name")
+                .Title("Client");
+            //cols.Bound(pr => pr.Status);
+            cols.ForeignKey(p => p.StatusId, (IEnumerable)ViewData["statuses"], "Id", "Text")
+                .Title("Status");
+            //cols.Bound(pr => pr.CreatedBy);
+            cols.ForeignKey(p => p.UserId, (IEnumerable)ViewData["users"], "Id", "UserName")
+                .Title("Created By");
+            cols.Bound(pr => pr.IsDeleted);
             cols.Command(command =>
             {
                 command.Edit();
@@ -25,6 +33,8 @@
     {
         tool.Create();
     })
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:430px;" })
     .Sortable()
     .Pageable()
     .Groupable()
@@ -33,9 +43,10 @@
             {
                 edit.Mode(GridEditMode.PopUp);
             })
-    .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
-    .DataSource(data =>
-        data.Ajax()
+        .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
+        .DataSource(data => data
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
         .Model(m => m.Id(pr => pr.Id))
         .PageSize(10)
         .ServerOperation(true)
@@ -45,3 +56,18 @@
         .Destroy("Destroy", ControllerName)
         )
 )
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
