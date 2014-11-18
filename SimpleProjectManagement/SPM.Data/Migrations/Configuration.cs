@@ -511,7 +511,9 @@ namespace SPM.Data.Migrations
             var testUser = new ApplicationUser
             {
                 Email = "test@abv.com",
-                UserName = "testuser"
+                UserName = "testuser",
+                FirstName = "Пешо",
+                LastName = "Гошев"
             };
 
             this.userManager.Create(testUser, "123456");

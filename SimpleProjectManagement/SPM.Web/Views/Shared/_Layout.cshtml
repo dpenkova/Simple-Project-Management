@@ -13,7 +13,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,10 +24,20 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" id="menu">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = string.Empty }, null)</li>
+                    @*if (User.IsInRole(GlobalConstants.AdminRole))
+                    {*@
+                    <li>
+                        Administer
+                        <ul>
+                            <li>@Html.ActionLink("Clients", "Index", "Client", new { area = "Administration" }, null)</li>
+                            <li>@Html.ActionLink("Projects", "Index", "Project", new { area = "Administration" }, null)</li>
+                        </ul>
+                    </li>
+                    @*}*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -44,5 +54,10 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/kendo")
     @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $('#menu').kendoMenu();
+        })
+    </script>
 </body>
 </html>

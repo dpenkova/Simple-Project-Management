@@ -36,7 +36,6 @@
                 DbEntityEntry entry = this.Context.Entry(entity);
                 entry.State = EntityState.Modified;
             }
-           
         }
 
         public void ActualDelete(T entity)

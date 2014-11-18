@@ -1,25 +1,23 @@
 ﻿namespace SPM.Web.Areas.Administration.Controllers
 {
+    using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
 
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
-    using AutoMapper.QueryableExtensions;
-
     using Microsoft.AspNet.Identity;
 
     using SPM.Data;
-    using SPM.Data.Contracts.Repository;
     using SPM.Models;
-    using SPM.Web.Areas.Administration.ViewModels.Projects;
-    using System.Threading;
-    using System.Globalization;
-    using System;
     using SPM.Web.Areas.Administration.ViewModels.Clients;
-    using SPM.Web.Areas.Administration.ViewModels.Users;
+    using SPM.Web.Areas.Administration.ViewModels.Projects;
     using SPM.Web.Areas.Administration.ViewModels.Statuses;
+    using SPM.Web.Areas.Administration.ViewModels.Users;
 
     public class ProjectController : AdminController
     {
@@ -83,36 +81,36 @@
             return Json(new[] { projectModel }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult Create([DataSourceRequest] DataSourceRequest request, ProjectViewModel projectModel)
-        {
-            if (projectModel != null && ModelState.IsValid)
-            {
-                var client = this.Data.Clients.All().FirstOrDefault(x => x.Name == projectModel.Client);
-                var status = this.Data.ProjectStatuses.All().FirstOrDefault(x => x.Text == projectModel.Status);
+        //[HttpPost]
+        //public JsonResult Create([DataSourceRequest] DataSourceRequest request, ProjectViewModel projectModel)
+        //{
+        //    if (projectModel != null && ModelState.IsValid)
+        //    {
+        //        var client = this.Data.Clients.All().FirstOrDefault(x => x.Name == projectModel.Client);
+        //        var status = this.Data.ProjectStatuses.All().FirstOrDefault(x => x.Text == projectModel.Status);
 
-                var userId = this.User.Identity.GetUserId();
-                var user = this.Data.Users.All().FirstOrDefault(x => x.Id == userId);
+        //        var userId = this.User.Identity.GetUserId();
+        //        var user = this.Data.Users.All().FirstOrDefault(x => x.Id == userId);
 
-                var newProject = new Project
-                {
-                    Title = projectModel.Title,
-                    Description = projectModel.Description,
-                    Client = client,
-                    Status = status,
-                    CreatedById = userId,
-                };
+        //        var newProject = new Project
+        //        {
+        //            Title = projectModel.Title,
+        //            Description = projectModel.Description,
+        //            Client = client,
+        //            Status = status,
+        //            CreatedById = userId,
+        //        };
 
-                this.Data.Projects.Add(newProject);
-                this.Data.SaveChanges();
+        //        this.Data.Projects.Add(newProject);
+        //        this.Data.SaveChanges();
 
-                string author = user.FirstName + " " + user.LastName;
-                projectModel.Id = newProject.Id;
-                projectModel.CreatedBy = author;
-            }
+        //        string author = user.FirstName + " " + user.LastName;
+        //        projectModel.Id = newProject.Id;
+        //        projectModel.CreatedBy = author;
+        //    }
 
-            return Json(new[] { projectModel }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new[] { projectModel }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        //}
 
         private void PopulateClients()
         {

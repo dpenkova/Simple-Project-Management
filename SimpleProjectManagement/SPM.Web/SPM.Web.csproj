@@ -192,6 +192,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ClientController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Base\AdministrationViewModel.cs" />
@@ -464,6 +465,7 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Areas\Administration\Views\Client\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

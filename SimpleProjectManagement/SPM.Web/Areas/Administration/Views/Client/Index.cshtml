@@ -1,38 +1,31 @@
-﻿@using SPM.Web.Areas.Administration.ViewModels.Projects
-@using System.Collections
+﻿@using SPM.Web.Areas.Administration.ViewModels.Clients
 @{
-    ViewBag.Title = "Projects";
-    const string ControllerName = "Project";
+    ViewBag.Title = "Clients";
+    const string ControllerName = "Client";
 }
 
 <h2>@ViewBag.Title</h2>
 
 @(Html.Kendo()
-    .Grid<ProjectViewModel>()
+        .Grid<ClientViewModel>()
     .Name("grid")
     .Columns(cols =>
         {
-            cols.Bound(pr => pr.Title);
-            //cols.Bound(pr => pr.Client);
-            cols.ForeignKey(p => p.ClientId, (IEnumerable)ViewData["clients"], "Id", "Name")
-                .Title("Client");
-            //cols.Bound(pr => pr.Status);
-            cols.ForeignKey(p => p.StatusId, (IEnumerable)ViewData["statuses"], "Id", "Text")
-                .Title("Status");
-            //cols.Bound(pr => pr.CreatedBy);
-            cols.ForeignKey(p => p.UserId, (IEnumerable)ViewData["users"], "Id", "UserName")
+            cols.Bound(c => c.Id).Hidden();
+            cols.Bound(c => c.Name);
+            cols.ForeignKey(p => p.CreatedById, (System.Collections.IEnumerable)ViewData["users"], "Id", "UserName")
                 .Title("Created By");
-            cols.Bound(pr => pr.IsDeleted);
+            cols.Bound(c => c.IsDeleted);
             cols.Command(command =>
             {
                 command.Edit();
                 command.Destroy();
             });
         })
-    //.ToolBar(tool =>
-    //{
-    //    tool.Create();
-    //})
+    .ToolBar(tool =>
+    {
+        tool.Create();
+    })
     .Scrollable()
     .HtmlAttributes(new { style = "height:430px;" })
     .Sortable()
@@ -71,3 +64,4 @@
         }
     }
 </script>
+
