@@ -41,11 +41,9 @@
         public string Title { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        [Required]
         public string Client { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        [Required]
         public string Status { get; set; }
 
         public string Description { get; set; }

@@ -1,16 +1,20 @@
-﻿using AutoMapper.QueryableExtensions;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
-using SPM.Data;
-using SPM.Models;
-using SPM.Web.Areas.Administration.ViewModels.Clients;
-using System.Linq;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using SPM.Web.Areas.Administration.ViewModels.Users;
-
-namespace SPM.Web.Areas.Administration.Controllers
+﻿namespace SPM.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+
+    using Microsoft.AspNet.Identity;
+
+    using SPM.Data;
+    using SPM.Models;
+    using SPM.Web.Areas.Administration.ViewModels.Clients;
+    using SPM.Web.Areas.Administration.ViewModels.Users;
+
     public class ClientController : AdminController
     {
         public ClientController(IApplicationData data)

@@ -1,0 +1,77 @@
+﻿@using SPM.Web.Areas.Administration.ViewModels.Tasks
+@using System.Collections
+@{
+    ViewBag.Title = "Tasks";
+    const string ControllerName = "Task";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.Kendo()
+    .Grid<TaskViewModel>()
+    .Name("grid")
+    .Columns(cols =>
+        {
+            cols.Bound(t => t.Id).Hidden();
+            cols.Bound(t => t.Name);
+            cols.ForeignKey(t => t.ProjectId, (IEnumerable)ViewData["projects"], "Id", "Title")
+                .Title("Project");
+            // cols.Bound(t => t.StartDate);
+            cols.Bound(t => t.EndDate);
+            cols.ForeignKey(t => t.TaskStatusId, (IEnumerable)ViewData["taskStatuses"], "Id", "Text")
+                .Title("Status");
+            cols.ForeignKey(t => t.CreatedById, (IEnumerable)ViewData["users"], "Id", "UserName")
+                .Title("Created By");
+            cols.ForeignKey(t => t.ResponsibleId, (IEnumerable)ViewData["users"], "Id", "UserName")
+                .Title("Assigned To");
+            // cols.Bound(t => t.EndedOn);
+            cols.Bound(pr => pr.IsDeleted);
+            cols.Command(command =>
+            {
+                command.Edit();
+                command.Destroy();
+            });
+        })
+        //.ToolBar(tool =>
+        //{
+        //    tool.Create();
+        //})
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:430px;" })
+    .Sortable()
+    .Pageable()
+    .Groupable()
+    .Filterable()
+    .Editable(edit =>
+            {
+                edit.Mode(GridEditMode.PopUp);
+            })
+        .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
+        .DataSource(data => data
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .Model(m => m.Id(pr => pr.Id))
+        .PageSize(10)
+        .ServerOperation(true)
+        .Create("Create", ControllerName)
+        .Read(read => read.Action("Read", ControllerName))
+        .Update("Update", ControllerName)
+        .Destroy("Destroy", ControllerName)
+        )
+)
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+

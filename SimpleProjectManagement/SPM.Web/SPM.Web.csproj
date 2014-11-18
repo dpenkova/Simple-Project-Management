@@ -195,10 +195,13 @@
     <Compile Include="Areas\Administration\Controllers\ClientController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProjectController.cs" />
+    <Compile Include="Areas\Administration\Controllers\TaskController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Base\AdministrationViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Clients\ClientViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Projects\ProjectViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Statuses\StatusViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Statuses\TaskStatusViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Tasks\TaskViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Users\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -466,6 +469,7 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Administration\Views\Client\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Task\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
