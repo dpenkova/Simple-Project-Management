@@ -1,6 +1,8 @@
 ﻿namespace SPM.Web.Areas.Administration.Controllers
 {
+    using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -19,7 +21,7 @@
        public TaskController(IApplicationData data)
             : base(data)
         {
-           
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
         }
 
         public ActionResult Index()
