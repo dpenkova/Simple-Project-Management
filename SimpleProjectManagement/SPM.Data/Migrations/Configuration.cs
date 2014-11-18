@@ -298,6 +298,11 @@ namespace SPM.Data.Migrations
 
         private void SeedProjects(ApplicationDbContext context)
         {
+            if (context.Projects.Any())
+            {
+                return;
+            }
+
             var clientsIds = context.Clients.Select(c => c.Id).ToList();
             var clientsCount = clientsIds.Count();
 
@@ -307,117 +312,115 @@ namespace SPM.Data.Migrations
             var userIds = context.Users.Select(u => u.Id).ToList();
             var usersCount = userIds.Count();
 
-            if (!context.Projects.Any())
+            var projects = new List<Project>();
+            projects.Add(new Project
             {
-                var projects = new List<Project>();
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Halloween event"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Първа помощ БТЛ"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "BTL конкурс"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Branding magazine"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Prizes logistics"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Пловдивски панаир"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Back to school additional activities"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Malls contracts"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Caravanas roadshow - конкурс"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Семплинг на нов продукт на два фестивала"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "QSA Monthly Report"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Веселите зъбки"
-                });
-                projects.Add(new Project
-                {
-                    ClientId = clientsIds[Rand.Next(clientsCount)],
-                    CreatedById = userIds[Rand.Next(usersCount)],
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
-                    Title = "Blue Event"
-                });
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Halloween event"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Първа помощ БТЛ"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "BTL конкурс"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Branding magazine"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Prizes logistics"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Пловдивски панаир"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Back to school additional activities"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Malls contracts"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Caravanas roadshow - конкурс"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Семплинг на нов продукт на два фестивала"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "QSA Monthly Report"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Веселите зъбки"
+            });
+            projects.Add(new Project
+            {
+                ClientId = clientsIds[Rand.Next(clientsCount)],
+                CreatedById = userIds[Rand.Next(usersCount)],
+                Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                StatusId = projectStatusesIds[Rand.Next(projectStatusCount)],
+                Title = "Blue Event"
+            });
 
-                context.Projects.AddOrUpdate(projects.ToArray());
-                context.SaveChanges();
-            }
+            context.Projects.AddOrUpdate(projects.ToArray());
+            context.SaveChanges();
+
         }
 
         private void SeedClients(ApplicationDbContext context)

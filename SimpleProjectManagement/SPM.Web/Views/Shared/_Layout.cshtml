@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using SPM.Common
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,15 +22,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Application name", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" id="menu">
                     <li>@Html.ActionLink("Clients", "Index", "Client", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("Projects", "Index", "Project", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("Tasks", "Index", "Task", new { area = string.Empty }, null)</li>
-                    @*if (User.IsInRole(GlobalConstants.AdminRole))
-                    {*@
+                    @if (User.IsInRole(GlobalConstants.AdminRole))
+                    {
                     <li>
                         Administer
                         <ul>
@@ -40,7 +41,7 @@
 
                         </ul>
                     </li>
-                    @*}*@
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

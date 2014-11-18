@@ -1,0 +1,59 @@
+﻿@using SPM.Web.ViewModels.Clients
+@{
+    ViewBag.Title = "Clients";
+    const string ControllerName = "Client";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.AntiForgeryToken()
+
+@(Html.Kendo()
+        .Grid<ClientViewModel>()
+    .Name("grid")
+    .Columns(cols =>
+        {
+            cols.Bound(c => c.Id).Hidden();
+            cols.Bound(c => c.Name);
+            cols.Command(command =>
+            {
+                command.Edit();
+            });
+        })
+    .ToolBar(tool =>
+    {
+        tool.Create();
+    })
+    .HtmlAttributes(new { style = "height:430px; width:550px" })
+    .Sortable()
+    .Pageable()
+    .Filterable()
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
+    .DataSource(data => data
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .Model(m => m.Id(pr => pr.Id))
+        .PageSize(10)
+        .ServerOperation(true)
+        .Create("Create", ControllerName)
+        .Read(read => read.Action("Read", ControllerName))
+        .Update("Update", ControllerName)
+        .Destroy("Destroy", ControllerName)
+    )
+)
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
