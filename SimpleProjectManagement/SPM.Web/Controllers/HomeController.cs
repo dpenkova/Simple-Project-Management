@@ -28,7 +28,6 @@
 
         public ActionResult Index()
         {
-            var www = 1;
             //this.projects.Delete(12);
             //this.projects.SaveChanges();
 
